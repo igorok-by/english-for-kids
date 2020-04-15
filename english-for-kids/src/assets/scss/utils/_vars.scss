@@ -1,11 +1,11 @@
 // Font
-// $mainFont                : 'Panton', Helvetica, Arial, sans-serif;
+$mainFont                : 'Rubik', Helvetica, Arial, sans-serif;
 
 // Size
-// $mainFontColor           : #1d1e1e;
-// $mainFontSize            : 16px;
-// $mainFontWeight          : normal;
-// $mainLineHeight          : 1;
+$mainFontColor           : #212121;
+$mainFontSize            : 16px;
+$mainFontWeight          : normal;
+$mainLineHeight          : 1;
 
 // Main color
 $primary                 : #2196f3 !default;
@@ -17,6 +17,24 @@ $danger                  : #e51c23 !default;
 $light                   : #ffffff !default;
 $dark                    : #222222 !default;
 $black                   : #000000 !default;
+
+// Secondary color
+$primary-dark            : #1B75BF !default;
+$primary-light           : #6CB7F4 !default;
+$warning-dark            : #CC7A00 !default;
+$warning-light           : #FFB84D !default;
+$info-dark               : #6E1B7D !default;
+$info-light              : #EA83FC !default;
+$success-dark            : #367D38 !default;
+$success-light           : #6DFC71 !default;
+
+//Rainbow
+$red                     : #E30702;
+$orange                  : #FA5002;
+$yellow                  : #E3F21A;
+$green                   : #009148;
+$blue                    : #0033AF;
+$violet                  : #5D0399;
 
 // Transition
 $def-transition          : all .3s cubic-bezier(0.25, 0.1, 0.25, 1);

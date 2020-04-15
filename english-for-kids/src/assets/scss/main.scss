@@ -1,8 +1,18 @@
 // Utils
 @import "utils/vars";
-// @import "utils/mixins";
-// @import "utils/fonts";
+@import "utils/fonts";
+@import "utils/mixins";
 
+body {
+  position: relative;
+  line-height: $mainLineHeight;
+  font-family: $mainFont;
+  font-weight: $mainFontWeight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $mainFontColor;
+  background-color: $light;
+}
 
 // Modules
 @import "modules/header";

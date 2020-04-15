@@ -1,8 +1,26 @@
 .menu {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 350px;
+  padding: 105px 0 20px;
+  background-color: $primary-light;
+  transition: $long-transition;
 
+  &--shown {
+    transform: translateX(0);
+  }
 }
 
 .menu-button {
+  position: relative;
+  z-index: 6;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,7 +38,57 @@
 
   &:hover {
     span {
-      background-color: $success;
+      background-color: $success-dark;
     }
+  }
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  padding: rem(10) 0 rem(10) rem(30);
+  font-size: rem(25);
+  color: $warning-dark;
+  transition: $def-transition;
+  cursor: pointer;
+
+  &--main {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  &:hover {
+    background-color: $secondary;
+  }
+}
+
+.menu__icon {
+  width: rem(40);
+  height: rem(50);
+  margin-right: 10px;
+  fill: $warning-dark;
+
+  &--red {
+    fill: $red;
+  }
+
+  &--orange {
+    fill: $orange;
+  }
+
+  &--yellow {
+    fill: $yellow;
+  }
+
+  &--green {
+    fill: $green;
+  }
+
+  &--blue {
+    fill: $blue;
+  }
+
+  &--violet {
+    fill: $violet;
   }
 }
