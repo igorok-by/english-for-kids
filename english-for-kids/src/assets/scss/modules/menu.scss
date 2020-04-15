@@ -1,0 +1,19 @@
+.menu {
+
+}
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 45px;
+  height: 40px;
+  padding: 10px;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  span {
+    width: 25px;
+    height: 2.4px;
+    border-radius: 5px;
+  }
+}
