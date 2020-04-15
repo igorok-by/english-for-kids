@@ -8,15 +8,20 @@
 // $mainLineHeight          : 1;
 
 // Main color
-// $dark-color              : #000000;
-// $default-color           : #ffffff;
-// $primary-color           : #0086c0;
-// $success-color           : #00963f;
+$primary                 : #2196f3 !default;
+$secondary               : #ffffff !default;
+$success                 : #4caf50 !default;
+$info                    : #9c27b0 !default;
+$warning                 : #ff9800 !default;
+$danger                  : #e51c23 !default;
+$light                   : #ffffff !default;
+$dark                    : #222222 !default;
+$black                   : #000000 !default;
+
+// Transition
+$def-transition          : all .3s cubic-bezier(0.25, 0.1, 0.25, 1);
+$long-transition         : all .8s cubic-bezier(0.25, 0.1, 0.25, 1);
 
 // Background
 // $primary-bckgr           : #009ee2;
 // $light-bckgr             : #efefef;
-
-// Transition
-// $def-transition          : all .3s cubic-bezier(0.25, 0.1, 0.25, 1);
-// $long-transition         : all .8s cubic-bezier(0.25, 0.1, 0.25, 1);

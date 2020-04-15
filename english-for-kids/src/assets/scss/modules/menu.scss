@@ -6,14 +6,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 45px;
-  height: 40px;
-  padding: 10px;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+  
   span {
-    width: 25px;
-    height: 2.4px;
+    width: 100%;
+    height: 4px;
     border-radius: 5px;
+    background-color: $warning;
+    transition: $def-transition;
+  }
+
+  &:hover {
+    span {
+      background-color: $success;
+    }
   }
 }
