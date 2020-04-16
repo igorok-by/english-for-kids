@@ -9,8 +9,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PATHS = {
   src: path.join(__dirname, '../src'),
   dist: path.join(__dirname, '../dist'),
-  assets: 'assets/'
-}
+  assets: 'assets/',
+};
 
 // Pages const for HtmlWebpackPlugin
 const PAGES_DIR = PATHS.src;
@@ -57,7 +57,13 @@ module.exports = {
       loader: 'file-loader',
       options: {
         name: '[name].[ext]',
-      }
+      },
+    }, {
+      test: /\.mp3$/,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+      },
     }, {
       test: /\.scss$/,
       use: [
@@ -72,8 +78,8 @@ module.exports = {
         }, {
           loader: 'sass-loader',
           options: { sourceMap: true }
-        }
-      ]
+        },
+      ],
     }, {
       test: /\.css$/,
       use: [
@@ -85,20 +91,16 @@ module.exports = {
         }, {
           loader: 'postcss-loader',
           options: { sourceMap: true, config: { path: './postcss.config.js' } },
-        }
-      ]
-    }]
+        },
+      ],
+    }],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-    }),
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[hash].css`,
     }),
     new CopyWebpackPlugin([
+      { from: `${PATHS.src}/${PATHS.assets}audio`, to: `${PATHS.assets}audio` },
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       { from: `${PATHS.src}/static`, to: '' },
@@ -109,4 +111,4 @@ module.exports = {
       filename: `./${page}`,
     })),
   ],
-}
+};
