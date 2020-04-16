@@ -1,0 +1,53 @@
+.card {
+  align-items: center;
+  margin-bottom: rem(50);
+  padding: rem(20) rem(10);
+  background-color: $warning;
+  border-radius: rem(5);
+  cursor: pointer;
+  transition: $def-transition;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
+  }
+
+  &--play {
+    background-color: $success;
+  }
+}
+
+.card__name {
+  margin-bottom: 0;
+  font-size: rem(28);
+  color: $secondary;
+}
+
+.card__icon {
+  width: 9vw;
+  height: 9vw;
+  margin-bottom: rem(15);
+
+  &--red {
+    fill: $red;
+  }
+
+  &--orange {
+    fill: $orange;
+  }
+
+  &--yellow {
+    fill: $yellow;
+  }
+
+  &--green {
+    fill: $green;
+  }
+
+  &--blue {
+    fill: $blue;
+  }
+
+  &--violet {
+    fill: $violet;
+  }
+}
