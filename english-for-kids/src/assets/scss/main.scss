@@ -15,10 +15,11 @@ body {
 }
 
 // Modules
+@import "modules/card";
 @import "modules/header";
 @import "modules/menu";
+@import "modules/rating";
 @import "modules/switch";
-@import "modules/card";
 // @import "modules/btn";
 // @import "modules/carousel";
 // @import "modules/catalog";
