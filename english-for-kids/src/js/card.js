@@ -1,16 +1,19 @@
 class Card {
   constructor({
     word, translation, image, audioSrc,
-  }) {
+  }, isMain, imgName, title) {
     this.word = word;
     this.translation = translation;
     this.image = image;
     this.audioSrc = audioSrc;
     this.card = '';
+    this.isMain = isMain;
+    this.imgName = imgName;
+    this.title = title;
   }
 
   generateCard() {
-    const template = `<div class="card-container">
+    const templateCat = `<div class="card-container">
             <div class="card card--cat" data-audio="./assets/${this.audioSrc}">
               <div class="card__front">
                 <img class="card__img" src="./assets/${this.image}" alt="${this.word}">
@@ -23,9 +26,18 @@ class Card {
               </div>
             </div>
           </div>`;
+    const templateMain = `<div class="card">
+            <svg class="card__icon card__icon--red"><use xlink:href="#${this.imgName}"></use></svg>
+            <p class="card__name">${this.title}</p>
+          </div>`;
+
     this.card = document.createElement('div');
     this.card.classList.add('col-3');
-    this.card.insertAdjacentHTML('beforeend', template);
+    if (this.isMain) {
+      this.card.insertAdjacentHTML('beforeend', templateMain);
+    } else {
+      this.card.insertAdjacentHTML('beforeend', templateCat);
+    }
     return this.card;
   }
 
@@ -58,7 +70,9 @@ class Card {
 
   mountCard() {
     this.card = this.generateCard();
-    this.bindEvents();
+    if (!this.isMain) {
+      this.bindEvents();
+    }
 
     return this.card;
   }

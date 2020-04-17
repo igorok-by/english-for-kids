@@ -1,4 +1,6 @@
 const cards = [
+  // ['ball', 'bike', 'horse', 'puzzle', 'duck', 'dinosaur', 'suit', 'baby'],
+  ['ball', 'bike', 'duck', 'dinosaur', 'suit', 'baby'],
   ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
   [
     {
