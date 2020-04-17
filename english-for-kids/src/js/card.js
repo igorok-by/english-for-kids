@@ -1,6 +1,7 @@
-// import card from "./data";
 class Card {
-  constructor({ word, translation, image, audioSrc }) {
+  constructor({
+    word, translation, image, audioSrc,
+  }) {
     this.word = word;
     this.translation = translation;
     this.image = image;

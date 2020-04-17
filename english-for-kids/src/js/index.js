@@ -1,5 +1,5 @@
 import cards from './data';
-import Card from './card';
+import Card from './Card';
 
 const main = document.querySelector('main');
 const switcher = document.querySelector('.switch');
@@ -34,15 +34,28 @@ const handleMenu = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
 };
 
-const renderCards = (dataCards) => {
-  dataCards[1].forEach((dataCard) => {
-    const card = new Card(dataCard);
-    rowCategory.append(card.mountCard());
-  });
+const renderCards = (dataOfCards) => {
+  const pressedCat = event.target.closest('.menu__item');
+  const nameOfCat = pressedCat.querySelector('span').innerText;
+
+  rowCategory.textContent = '';
+
+  if (!pressedCat.classList.contains('menu__item--main')) {
+    const indexOfCategory = dataOfCards[0].indexOf(nameOfCat) + 1;
+
+    dataOfCards[indexOfCategory].forEach((dataOfCard) => {
+      const card = new Card(dataOfCard);
+      rowCategory.append(card.mountCard());
+    });
+  }
+};
+
+const bindEventListeners = () => {
+  menu.addEventListener('click', () => renderCards(cards));
 };
 
 window.onload = () => {
   handleMenu();
 
-  renderCards(cards);
+  bindEventListeners();
 };
