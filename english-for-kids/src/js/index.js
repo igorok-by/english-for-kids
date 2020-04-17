@@ -36,10 +36,6 @@ const handleMenu = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
 };
 
-const mountCardContainer = () => {
-  const cardContainer = new CardContainer();
-};
-
 const renderCards = (dataOfCards) => {
   const pressedCat = event.target.closest('.menu__item');
   const nameOfCat = pressedCat.querySelector('span').innerText;
@@ -70,6 +66,4 @@ window.onload = () => {
   handleMenu();
 
   bindEventListeners();
-
-  // mountCardContainer();
 };

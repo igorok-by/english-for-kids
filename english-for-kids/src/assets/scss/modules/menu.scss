@@ -67,28 +67,36 @@
   height: rem(50);
   margin-right: 10px;
   fill: $warning-dark;
-
-  &--red {
+  
+  &--ball {
     fill: $red;
   }
-
-  &--orange {
+  
+  &--bike {
     fill: $orange;
   }
 
-  &--yellow {
+  &--horse {
+    fill: $brown;
+  }
+
+  &--puzzle {
+    fill: $dark;
+  }
+  
+  &--duck {
     fill: $yellow;
   }
 
-  &--green {
+  &--dinosaur {
     fill: $green;
   }
 
-  &--blue {
+  &--suit {
     fill: $blue;
   }
 
-  &--violet {
+  &--baby {
     fill: $violet;
   }
 }

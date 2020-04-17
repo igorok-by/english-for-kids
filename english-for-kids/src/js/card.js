@@ -27,7 +27,7 @@ class Card {
             </div>
           </div>`;
     const templateMain = `<div class="card">
-            <svg class="card__icon card__icon--red"><use xlink:href="#${this.imgName}"></use></svg>
+            <svg class="card__icon card__icon--${this.imgName}"><use xlink:href="#${this.imgName}"></use></svg>
             <p class="card__name">${this.title}</p>
           </div>`;
 
