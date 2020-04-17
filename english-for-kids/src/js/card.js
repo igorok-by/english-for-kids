@@ -37,15 +37,26 @@ class Card {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  sayWord(card) {
+    if (!event.target.closest('.card__rotate')) {
+      const cardBody = card.querySelector('.card--cat');
+      const audio = new Audio();
+      audio.src = cardBody.dataset.audio;
+      audio.play();
+    }
+  }
+
   bindEvents() {
     const btnToRotate = this.card.querySelector('.card__rotate');
+    const cardBody = this.card.querySelector('.card--cat');
 
     btnToRotate.addEventListener('click', () => this.flipCard(this.card));
+    cardBody.addEventListener('click', () => this.sayWord(this.card));
   }
 
   mountCard() {
     this.card = this.generateCard();
-
     this.bindEvents();
 
     return this.card;
