@@ -1,10 +1,12 @@
-// import cards from './cards';
+import cards from './data';
+import Card from './card';
 
 const main = document.querySelector('main');
 const switcher = document.querySelector('.switch');
 const menu = document.querySelector('.menu');
 const menuItems = document.querySelectorAll('.menu__item');
 const btnMenu = document.querySelector('.menu-button');
+const rowCategory = document.querySelector('#category');
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -32,6 +34,15 @@ const handleMenu = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
 };
 
+const renderCards = (dataCards) => {
+  dataCards[1].forEach((dataCard) => {
+    const card = new Card(dataCard);
+    rowCategory.append(card.mountCard());
+  });
+};
+
 window.onload = () => {
   handleMenu();
+
+  renderCards(cards);
 };

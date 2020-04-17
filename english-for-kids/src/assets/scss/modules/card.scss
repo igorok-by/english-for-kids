@@ -10,7 +10,6 @@
   transition: $def-transition;
 
   &:hover {
-    transform: scale(1.01);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .4);
   }
 
@@ -19,9 +18,10 @@
   }
 
   &--cat {
+    margin-bottom: 0;
     padding: 0;
     transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
   }
 
   &--rotated {
@@ -30,6 +30,7 @@
 }
 
 .card-container {
+  margin-bottom: rem(50);
   perspective: 500px;
 }
 
