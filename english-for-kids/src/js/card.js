@@ -28,10 +28,25 @@ class Card {
     return this.card;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  flipCard(card) {
+    const cardBody = card.querySelector('.card--cat');
+    cardBody.classList.add('card--rotated');
+    cardBody.addEventListener('mouseleave', () => {
+      cardBody.classList.remove('card--rotated');
+    });
+  }
+
+  bindEvents() {
+    const btnToRotate = this.card.querySelector('.card__rotate');
+
+    btnToRotate.addEventListener('click', () => this.flipCard(this.card));
+  }
+
   mountCard() {
     this.card = this.generateCard();
 
-    // this.bindEvents();
+    this.bindEvents();
 
     return this.card;
   }
