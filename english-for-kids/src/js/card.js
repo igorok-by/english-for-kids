@@ -70,9 +70,8 @@ class Card {
 
   mountCard() {
     this.card = this.generateCard();
-    if (!this.isMain) {
-      this.bindEvents();
-    }
+
+    if (!this.isMain) this.bindEvents();
 
     return this.card;
   }

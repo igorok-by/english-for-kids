@@ -1,6 +1,5 @@
 import cards from './data';
 import Card from './Card';
-import CardContainer from './CardContainer';
 
 const main = document.querySelector('main');
 const switcher = document.querySelector('.switch');
@@ -8,7 +7,6 @@ const menu = document.querySelector('.menu');
 const menuItems = document.querySelectorAll('.menu__item');
 const btnMenu = document.querySelector('.menu-button');
 const rowMain = document.querySelector('#main');
-const rowCategory = document.querySelector('#category');
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -36,34 +34,49 @@ const handleMenu = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
 };
 
-const renderCards = (dataOfCards) => {
-  const pressedCat = event.target.closest('.menu__item');
-  const nameOfCat = pressedCat.querySelector('span').innerText;
+const renderCardsOfMain = (dataOfCards) => {
+  dataOfCards[1].map((name, index) => {
+    const img = dataOfCards[0][index];
+    let card = new Card(dataOfCards[2][1], true, img, name);
+    card = card.mountCard();
 
-  rowCategory.textContent = '';
+    const cardBody = card.querySelector('.card');
+    cardBody.addEventListener('click', () => reRenderCards(cards));
+
+    return rowMain.append(card);
+  });
+};
+
+const reRenderCards = (dataOfCards) => {
+  const pressedCat = event.target.closest('.menu__item') || event.target.closest('.card');
+
+  rowMain.textContent = '';
 
   if (pressedCat.classList.contains('menu__item--main')) {
-    dataOfCards[1].map((name, index) => {
-      const img = dataOfCards[0][index];
-      const card = new Card(dataOfCards[2][1], true, img, name);
-      return rowCategory.append(card.mountCard());
-    });
+    renderCardsOfMain(dataOfCards);
   } else {
+    const nameOfCat = pressedCat.classList.contains('menu__item')
+      ? pressedCat.querySelector('span').innerText
+      : pressedCat.querySelector('.card__name').innerText;
     const indexOfCategory = dataOfCards[1].indexOf(nameOfCat) + 2;
 
     dataOfCards[indexOfCategory].map((dataOfCard) => {
       const card = new Card(dataOfCard, false);
-      return rowCategory.append(card.mountCard());
+      return rowMain.append(card.mountCard());
     });
   }
 };
 
 const bindEventListeners = () => {
-  menu.addEventListener('click', () => renderCards(cards));
+  menu.addEventListener('click', () => reRenderCards(cards));
 };
 
 window.onload = () => {
+  renderCardsOfMain(cards);
+
   handleMenu();
 
   bindEventListeners();
+
+  // mountCardContainer();
 };
