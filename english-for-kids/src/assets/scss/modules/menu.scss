@@ -68,8 +68,12 @@
   cursor: pointer;
 
   &--main {
+    color: $success-dark;
     font-weight: bold;
-    text-decoration: underline;
+  }
+
+  &--active {
+    background-color: rgba($color: $secondary, $alpha: 0.4);
   }
 
   &:hover {

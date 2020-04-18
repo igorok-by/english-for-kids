@@ -56,23 +56,40 @@ const renderCardsOfMain = (dataOfCards) => {
   });
 };
 
+// Handler for marking chosen category
+const markChosenCategory = (chosenCat) => {
+  if (chosenCat !== undefined) {
+    menuItems.forEach((cat) => cat.classList.remove('menu__item--active'));
+    chosenCat.classList.add('menu__item--active');
+  }
+};
+
 const handleRenderCards = (dataOfCards) => {
   const pressedCat = event.target.closest('.menu__item') || event.target.closest('.card');
 
-  rowMain.textContent = '';
+  if (pressedCat !== null) {
+    rowMain.textContent = '';
 
-  if (pressedCat.classList.contains('menu__item--main')) {
-    renderCardsOfMain(dataOfCards);
-  } else {
-    const nameOfCat = pressedCat.classList.contains('menu__item')
-      ? pressedCat.querySelector('span').innerText
-      : pressedCat.querySelector('.card__name').innerText;
-    const indexOfCategory = dataOfCards[1].indexOf(nameOfCat) + 2;
+    if (pressedCat.classList.contains('menu__item--main')) {
+      renderCardsOfMain(dataOfCards);
+      markChosenCategory(pressedCat);
+    } else {
+      const nameOfCat = pressedCat.classList.contains('menu__item')
+        ? pressedCat.querySelector('span').innerText
+        : pressedCat.querySelector('.card__name').innerText;
+      const indexOfCategory = dataOfCards[1].indexOf(nameOfCat) + 2;
 
-    dataOfCards[indexOfCategory].map((dataOfCard) => {
-      const card = new Card(dataOfCard, false);
-      return rowMain.append(card.mountCard());
-    });
+      dataOfCards[indexOfCategory].map((dataOfCard) => {
+        const card = new Card(dataOfCard, false);
+        return rowMain.append(card.mountCard());
+      });
+
+      menuItems.forEach((cat) => {
+        if (cat.querySelector('span').innerText === nameOfCat) {
+          markChosenCategory(cat);
+        }
+      });
+    }
   }
 
   handleSwitchMode();
