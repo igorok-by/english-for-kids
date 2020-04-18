@@ -8,6 +8,7 @@ const menuItems = document.querySelectorAll('.menu__item');
 const btnMenu = document.querySelector('.menu-button');
 const rowMain = document.querySelector('#main');
 const inputSwitchMode = document.querySelector('#isPlay');
+const btnStartGame = document.querySelector('button.button');
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -35,9 +36,11 @@ const handleSwitchMode = () => {
   const presentedCards = document.querySelectorAll('.card');
 
   if (inputSwitchMode.checked) {
+    btnStartGame.classList.add('button--shown');
     switcher.classList.add('switch--play');
     presentedCards.forEach((card) => card.classList.add('card--play'));
   } else {
+    btnStartGame.classList.remove('button--shown');
     switcher.classList.remove('switch--play');
     presentedCards.forEach((card) => card.classList.remove('card--play'));
   }
@@ -56,7 +59,6 @@ const renderCardsOfMain = (dataOfCards) => {
   });
 };
 
-// Handler for marking chosen category
 const markChosenCategory = (chosenCat) => {
   if (chosenCat !== undefined) {
     menuItems.forEach((cat) => cat.classList.remove('menu__item--active'));
@@ -67,7 +69,7 @@ const markChosenCategory = (chosenCat) => {
 const handleRenderCards = (dataOfCards) => {
   const pressedCat = event.target.closest('.menu__item') || event.target.closest('.card');
 
-  if (pressedCat !== null) {
+  if (pressedCat) {
     rowMain.textContent = '';
 
     if (pressedCat.classList.contains('menu__item--main')) {
@@ -103,6 +105,5 @@ const bindEventListeners = () => {
 
 window.onload = () => {
   renderCardsOfMain(cards);
-
   bindEventListeners();
 };
