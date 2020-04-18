@@ -32,7 +32,7 @@ class Card {
           </div>`;
 
     this.card = document.createElement('div');
-    this.card.classList.add('col-3');
+    this.card.classList.add('col-12', 'col-sm-6', 'col-lg-4', 'col-xl-3');
     if (this.isMain) {
       this.card.insertAdjacentHTML('beforeend', templateMain);
     } else {
