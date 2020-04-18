@@ -7,6 +7,7 @@ const menu = document.querySelector('.menu');
 const menuItems = document.querySelectorAll('.menu__item');
 const btnMenu = document.querySelector('.menu-button');
 const rowMain = document.querySelector('#main');
+const inputSwitchMode = document.querySelector('#isPlay');
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -30,8 +31,16 @@ const handleOpenMenu = () => {
   });
 };
 
-const handleMenu = () => {
-  btnMenu.addEventListener('click', handleOpenMenu);
+const handleSwitchMode = () => {
+  const presentedCards = document.querySelectorAll('.card');
+
+  if (inputSwitchMode.checked) {
+    switcher.classList.add('switch--play');
+    presentedCards.forEach((card) => card.classList.add('card--play'));
+  } else {
+    switcher.classList.remove('switch--play');
+    presentedCards.forEach((card) => card.classList.remove('card--play'));
+  }
 };
 
 const renderCardsOfMain = (dataOfCards) => {
@@ -41,13 +50,13 @@ const renderCardsOfMain = (dataOfCards) => {
     card = card.mountCard();
 
     const cardBody = card.querySelector('.card');
-    cardBody.addEventListener('click', () => reRenderCards(cards));
+    cardBody.addEventListener('click', () => handleRenderCards(cards));
 
     return rowMain.append(card);
   });
 };
 
-const reRenderCards = (dataOfCards) => {
+const handleRenderCards = (dataOfCards) => {
   const pressedCat = event.target.closest('.menu__item') || event.target.closest('.card');
 
   rowMain.textContent = '';
@@ -65,18 +74,18 @@ const reRenderCards = (dataOfCards) => {
       return rowMain.append(card.mountCard());
     });
   }
+
+  handleSwitchMode();
 };
 
 const bindEventListeners = () => {
-  menu.addEventListener('click', () => reRenderCards(cards));
+  btnMenu.addEventListener('click', handleOpenMenu);
+  menu.addEventListener('click', () => handleRenderCards(cards));
+  inputSwitchMode.addEventListener('change', handleSwitchMode);
 };
 
 window.onload = () => {
   renderCardsOfMain(cards);
 
-  handleMenu();
-
   bindEventListeners();
-
-  // mountCardContainer();
 };
