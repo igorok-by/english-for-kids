@@ -7,9 +7,12 @@ class Card {
     this.image = image;
     this.audioSrc = audioSrc;
     this.card = '';
+    this.cardBody = '';
+    this.btnToRotate = '';
     this.isMain = isMain;
     this.imgName = imgName;
-    this.title = title;
+    this.cardTitle = title;
+    this.isPlayMode = document.querySelector('#isPlay').checked;
   }
 
   generateCard() {
@@ -28,11 +31,12 @@ class Card {
           </div>`;
     const templateMain = `<div class="card">
             <svg class="card__icon card__icon--${this.imgName}"><use xlink:href="#${this.imgName}"></use></svg>
-            <p class="card__name">${this.title}</p>
+            <p class="card__name">${this.cardTitle}</p>
           </div>`;
 
     this.card = document.createElement('div');
     this.card.classList.add('col-12', 'col-sm-6', 'col-lg-4', 'col-xl-3');
+
     if (this.isMain) {
       this.card.insertAdjacentHTML('beforeend', templateMain);
     } else {
@@ -41,31 +45,30 @@ class Card {
     return this.card;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   flipCard(card) {
-    const cardBody = card.querySelector('.card--cat');
-    cardBody.classList.add('card--rotated');
-    cardBody.addEventListener('mouseleave', () => {
-      cardBody.classList.remove('card--rotated');
+    this.cardBody = card.querySelector('.card--cat');
+    this.cardBody.classList.add('card--rotated');
+    this.cardBody.addEventListener('mouseleave', () => {
+      this.cardBody.classList.remove('card--rotated');
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   sayWord(card) {
+    // eslint-disable-next-line no-restricted-globals
     if (!event.target.closest('.card__rotate')) {
-      const cardBody = card.querySelector('.card--cat');
+      this.cardBody = card.querySelector('.card--cat');
       const audio = new Audio();
-      audio.src = cardBody.dataset.audio;
+      audio.src = this.cardBody.dataset.audio;
       audio.play();
     }
   }
 
   bindEvents() {
-    const btnToRotate = this.card.querySelector('.card__rotate');
-    const cardBody = this.card.querySelector('.card--cat');
+    this.cardBody = this.card.querySelector('.card--cat');
+    this.btnToRotate = this.card.querySelector('.card__rotate');
 
-    btnToRotate.addEventListener('click', () => this.flipCard(this.card));
-    cardBody.addEventListener('click', () => this.sayWord(this.card));
+    this.cardBody.addEventListener('click', () => this.sayWord(this.card));
+    this.btnToRotate.addEventListener('click', () => this.flipCard(this.card));
   }
 
   mountCard() {

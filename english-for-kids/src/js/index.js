@@ -97,6 +97,11 @@ const handleRenderCards = (dataOfCards) => {
   handleSwitchMode();
 };
 
+
+const handleGameMode = () => {
+  
+};
+
 const bindEventListeners = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
   menu.addEventListener('click', () => handleRenderCards(cards));

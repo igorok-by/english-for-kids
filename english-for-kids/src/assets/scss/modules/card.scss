@@ -1,9 +1,9 @@
 .card {
   align-items: center;
   justify-content: space-between;
-  min-height: rem(215);
-  margin-bottom: rem(40);
-  padding: rem(20) rem(10);
+  min-height: 215px;
+  margin-bottom: 40px;
+  padding: 20px 10px;
   background-color: $warning;
   border-radius: rem(5);
   cursor: pointer;
@@ -30,7 +30,7 @@
 }
 
 .card-container {
-  margin-bottom: rem(40);
+  margin-bottom: 40px;
   perspective: 500px;
 }
 
@@ -41,9 +41,9 @@
 }
 
 .card__icon {
-  width: 9vw;
-  height: 9vw;
-  margin-bottom: rem(15);
+  width: 140px;
+  height: 140px;
+  margin-bottom: 15px;
 
   &--horse {
     fill: $brown;
@@ -124,7 +124,6 @@
   width: rem(32);
   height: rem(32);
   fill: $primary-dark;
-
   
   .card--play & {
     display: none;
