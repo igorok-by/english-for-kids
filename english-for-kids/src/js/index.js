@@ -9,6 +9,8 @@ const btnMenu = document.querySelector('.menu-button');
 const rowMain = document.querySelector('#main');
 const inputSwitchMode = document.querySelector('#isPlay');
 const btnStartGame = document.querySelector('#start');
+const rating = main.querySelector('.rating');
+let tracksToPlay = [];
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -32,18 +34,38 @@ const handleOpenMenu = () => {
   });
 };
 
+const shuffleArray = (array) => {
+  let currentIndex = array.length;
+  let temporaryValue;
+  let randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+};
+
 const handleSwitchMode = () => {
   const presentedCards = document.querySelectorAll('.card');
 
   if (inputSwitchMode.checked) {
     switcher.classList.add('switch--play');
     presentedCards.forEach((card) => card.classList.add('card--play'));
+    btnStartGame.addEventListener('click', handleGameMode);
 
     if (!menu.querySelector('.menu__item--main').classList.contains('menu__item--active')) {
       btnStartGame.classList.add('button--shown');
+      presentedCards.forEach((card) => { card.outerHTML = card.outerHTML });
     }
   } else {
     btnStartGame.classList.remove('button--shown');
+    btnStartGame.removeEventListener('click', handleGameMode);
     switcher.classList.remove('switch--play');
     presentedCards.forEach((card) => card.classList.remove('card--play'));
   }
@@ -100,15 +122,60 @@ const handleRenderCards = (dataOfCards) => {
   handleSwitchMode();
 };
 
+const playCurrentAudio = (listToPlay, delay) => {
+  const currentAudio = new Audio(`${listToPlay[listToPlay.length - 1]}`);
+  setTimeout(() => currentAudio.play(), delay);
+};
+
+const playOnClick = () => {
+  return playCurrentAudio(tracksToPlay, 300);
+};
+
+const addSmileToRating = (smile) => {
+  const templateForSmile = `<svg class="rating__icon rating__icon--${smile}"><use xlink:href="#smile"></use></svg>`;
+  return rating.insertAdjacentHTML('beforeend', templateForSmile);
+}
+
+const handleIsThisCorrect = () => {
+  const clickedCard = event.target.closest('.card');
+  const audioCorrect = new Audio('./assets/audio/correct.mp3');
+  const audioError = new Audio('./assets/audio/error.mp3');
+  // console.log(tracksToPlay);
+
+  if (clickedCard.dataset.audio === tracksToPlay[tracksToPlay.length - 1]) {
+    audioCorrect.play();
+    clickedCard.classList.add('card--disabled');
+    clickedCard.removeEventListener('click', handleIsThisCorrect);
+    addSmileToRating('smile');
+    tracksToPlay.pop();
+    playCurrentAudio(tracksToPlay, 700);
+  } else {
+    audioError.play();
+    addSmileToRating('sad');
+  }
+};
+
 const handleGameMode = () => {
+  let cardsToPlay = document.querySelectorAll('.card');
+  tracksToPlay = [];
+  cardsToPlay.forEach((card) => { card.outerHTML = card.outerHTML });
   btnStartGame.classList.add('button--play');
+  btnStartGame.removeEventListener('click', handleGameMode);
+
+  cardsToPlay = document.querySelectorAll('.card');
+  cardsToPlay.forEach((card) => {
+    card.addEventListener('click', handleIsThisCorrect);
+    tracksToPlay.push(card.dataset.audio);
+  });
+  tracksToPlay = shuffleArray(tracksToPlay);
+  playCurrentAudio(tracksToPlay, 700);
+  btnStartGame.addEventListener('click', playOnClick);
 };
 
 const bindEventListeners = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
   menu.addEventListener('click', () => handleRenderCards(cards));
   inputSwitchMode.addEventListener('change', handleSwitchMode);
-  btnStartGame.addEventListener('click', handleGameMode);
 };
 
 window.onload = () => {
