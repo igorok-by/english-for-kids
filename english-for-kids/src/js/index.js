@@ -8,7 +8,7 @@ const menuItems = document.querySelectorAll('.menu__item');
 const btnMenu = document.querySelector('.menu-button');
 const rowMain = document.querySelector('#main');
 const inputSwitchMode = document.querySelector('#isPlay');
-const btnStartGame = document.querySelector('button.button');
+const btnStartGame = document.querySelector('#start');
 
 const handleCloseMenu = () => {
   menu.classList.remove('menu--shown');
@@ -36,9 +36,12 @@ const handleSwitchMode = () => {
   const presentedCards = document.querySelectorAll('.card');
 
   if (inputSwitchMode.checked) {
-    btnStartGame.classList.add('button--shown');
     switcher.classList.add('switch--play');
     presentedCards.forEach((card) => card.classList.add('card--play'));
+
+    if (!menu.querySelector('.menu__item--main').classList.contains('menu__item--active')) {
+      btnStartGame.classList.add('button--shown');
+    }
   } else {
     btnStartGame.classList.remove('button--shown');
     switcher.classList.remove('switch--play');
@@ -97,15 +100,15 @@ const handleRenderCards = (dataOfCards) => {
   handleSwitchMode();
 };
 
-
 const handleGameMode = () => {
-  
+  btnStartGame.classList.add('button--play');
 };
 
 const bindEventListeners = () => {
   btnMenu.addEventListener('click', handleOpenMenu);
   menu.addEventListener('click', () => handleRenderCards(cards));
   inputSwitchMode.addEventListener('change', handleSwitchMode);
+  btnStartGame.addEventListener('click', handleGameMode);
 };
 
 window.onload = () => {

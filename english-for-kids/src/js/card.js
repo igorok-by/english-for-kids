@@ -12,7 +12,7 @@ class Card {
     this.isMain = isMain;
     this.imgName = imgName;
     this.cardTitle = title;
-    this.isPlayMode = document.querySelector('#isPlay').checked;
+    this.modeSwitcher = document.querySelector('#isPlay');
   }
 
   generateCard() {
@@ -64,17 +64,19 @@ class Card {
   }
 
   bindEvents() {
-    this.cardBody = this.card.querySelector('.card--cat');
-    this.btnToRotate = this.card.querySelector('.card__rotate');
+    if (!this.isMain && !this.modeSwitcher.checked) {
+      this.cardBody = this.card.querySelector('.card--cat');
+      this.btnToRotate = this.card.querySelector('.card__rotate');
 
-    this.cardBody.addEventListener('click', () => this.sayWord(this.card));
-    this.btnToRotate.addEventListener('click', () => this.flipCard(this.card));
+      this.cardBody.addEventListener('click', () => this.sayWord(this.card));
+      this.btnToRotate.addEventListener('click', () => this.flipCard(this.card));
+    }
   }
 
   mountCard() {
     this.card = this.generateCard();
 
-    if (!this.isMain) this.bindEvents();
+    this.bindEvents();
 
     return this.card;
   }
