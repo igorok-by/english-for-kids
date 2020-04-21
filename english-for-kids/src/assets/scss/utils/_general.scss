@@ -1,8 +1,9 @@
 html {
-  line-height: $mainLineHeight;
-  font-size: $mainFontSize;
-  color: $mainFontColor;
   height: 100%;
+
+  font-size: $mainFontSize;
+  line-height: $mainLineHeight;
+  color: $mainFontColor;
 
   @media screen and (max-width: $desktopWidth) {
     font-size: 15px;
@@ -19,24 +20,28 @@ html {
 
 body {
   position: relative;
+
+  font-weight: $mainFontWeight;
   line-height: $mainLineHeight;
   font-family: $mainFont;
-  font-weight: $mainFontWeight;
+  color: $mainFontColor;
+
+  background-color: $light;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $mainFontColor;
-  background-color: $light;
 }
 
 main {
   position: relative;
   z-index: 1;
+
   height: calc(100vh - 6.875rem);
   padding-top: 6.875rem;
 
   .text {
     font-size: rem(40);
-    color: $success;
     text-align: center;
+    color: $success;
   }
 }

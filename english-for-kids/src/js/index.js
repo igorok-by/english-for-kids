@@ -1,3 +1,7 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-self-assign */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
 import cards from './data';
 import Card from './Card';
 
@@ -61,7 +65,7 @@ const handleSwitchMode = () => {
 
     if (!menu.querySelector('.menu__item--main').classList.contains('menu__item--active')) {
       btnStartGame.classList.add('button--shown');
-      presentedCards.forEach((card) => { card.outerHTML = card.outerHTML });
+      presentedCards.forEach((card) => { card.outerHTML = card.outerHTML; });
     }
   } else {
     const category = menu.querySelector('.menu__item--active');
@@ -134,9 +138,7 @@ const playCurrentAudio = (listToPlay, delay) => {
   return setTimeout(() => currentAudio.play(), delay);
 };
 
-const playAudioOnClick = () => {
-  return playCurrentAudio(tracksToPlay, 300);
-};
+const playAudioOnClick = () => playCurrentAudio(tracksToPlay, 300);
 
 const addSmileToRating = (smile) => {
   const templateForSmile = `<svg class="rating__icon rating__icon--${smile}"><use xlink:href="#${smile}"></use></svg>`;
@@ -194,7 +196,7 @@ const handleIsThisCorrect = () => {
 const handleGameMode = () => {
   let cardsToPlay = document.querySelectorAll('.card');
   tracksToPlay = [];
-  cardsToPlay.forEach((card) => { card.outerHTML = card.outerHTML });
+  cardsToPlay.forEach((card) => { card.outerHTML = card.outerHTML; });
   btnStartGame.classList.add('button--play');
   btnStartGame.removeEventListener('click', handleGameMode);
 
