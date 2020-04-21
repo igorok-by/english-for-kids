@@ -13,7 +13,7 @@ html {
   }
 
   @media screen and (max-width: $phoneWidth) {
-    // font-size: 13px;
+    font-size: 13px;
   }
 }
 
@@ -29,5 +29,14 @@ body {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   height: calc(100vh - 6.875rem);
+  padding-top: 6.875rem;
+
+  .text {
+    font-size: rem(40);
+    color: $success;
+    text-align: center;
+  }
 }

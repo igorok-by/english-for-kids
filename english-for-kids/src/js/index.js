@@ -155,6 +155,7 @@ const handleFinishGame = () => {
   const result = (howMuchErrors > 0) ? 'failure' : 'success';
   const audioFinish = new Audio(`./assets/audio/${result}.mp3`);
   const templateFinishGame = `<div class="col-12">
+          <p class="text">Errors: ${howMuchErrors}</p>
           <img class="img-fluid d-block m-auto" src="./assets/img/${result}.jpg" alt="${result}-smile">
         </div>
       </div>`;

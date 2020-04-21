@@ -2,7 +2,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 215px;
-  margin-bottom: 40px;
+  margin-bottom: rem(40);
   padding: 20px 10px;
   background-color: $warning;
   border-radius: rem(5);
@@ -26,6 +26,10 @@
 
   &--rotated {
     transform: rotateY(180deg);
+
+    svg {
+      transform: scale(0);
+    }
   }
 
   &--disabled {
@@ -39,8 +43,22 @@
 }
 
 .card-container {
-  margin-bottom: 40px;
+  margin-bottom: rem(40);
   perspective: 500px;
+}
+
+@media screen and (max-width: $tableWidth) {
+  .card,
+  .card-container {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .card,
+  .card-container {
+    margin-bottom: 20px;
+  }
 }
 
 .card__name {
@@ -133,8 +151,10 @@
   width: rem(32);
   height: rem(32);
   fill: $primary-dark;
+  transition: $def-transition;
   
-  .card--play & {
-    display: none;
+  .card--play &,
+  .card--rotate & {
+    transform: scale(0);
   }
 }

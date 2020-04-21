@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 5;
   top: 0;
-  left: 0;
+  left: -2px;
   transform: translateX(-100%);
   display: flex;
   flex-direction: column;
@@ -12,7 +12,20 @@
   max-width: 350px;
   padding: 105px 0 20px;
   background-color: $primary-light;
+  overflow-y: scroll;
   transition: $def-transition;
+
+  &::-webkit-scrollbar-track {
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $success;
+  }
 
   &--shown {
     transform: translateX(0);
